@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <cstring>
 
 std::string truncate(const std::string &str, size_t width) 
 {
