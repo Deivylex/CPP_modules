@@ -1,10 +1,10 @@
 # Variables
 NAME            = phonebook
 CC              = c++
-CFLAGS          = -Wall -Werror -Wextra -std=c++98
+CFLAGS          = -Wall -Werror -Wextra -std=c++11
 
 # Source and object files
-SRC_FILES       = main.cpp
+SRC_FILES       = main.cpp Contact.cpp PhoneBook.cpp
 OBJ_FILES       = $(SRC_FILES:.cpp=.o)
 
 # Control codes

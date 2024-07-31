@@ -1,39 +1,42 @@
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#include "phonebook.hpp"
 
-#include "Contact.hpp"
+PhoneBook::PhoneBook() : currentSize(0), nextIndex(0) {}
 
-
-class	Phonebook
+void PhoneBook::add() 
 {
-	public:
-	Phonebook() : currentSize(0), nextIndex(0) {}
-
-    void add() 
-	{
         if (currentSize < maxContacts) 
 		{
             Contact contact;
             std::string input;
 
             std::cout << "Enter first name: ";
-            std::cin >> input;
+            std::getline(std::cin, input);
+            if (std::cin.eof())
+                throw std::runtime_error("Error");
             contact.setFirstName(input);
 
 			std::cout << "Enter last name: ";
-            std::cin >> input;
+            std::getline(std::cin, input);
+            if (std::cin.eof())
+                throw std::runtime_error("Error");
             contact.setLastName(input);
 
             std::cout << "Enter nickname: ";
-            std::cin >> input;
+            std::getline(std::cin, input);
+            if (std::cin.eof())
+                throw std::runtime_error("Error");
             contact.setNickname(input);
 
             std::cout << "Enter phone number: ";
-            std::cin >> input;
+            std::getline(std::cin, input);
+            if (std::cin.eof())
+                throw std::runtime_error("Error");
             contact.setPhoneNumber(input);
 
             std::cout << "Enter darkest secret: ";
-            std::cin >> input;
+            std::getline(std::cin, input);
+            if (std::cin.eof())
+                throw std::runtime_error("Error");
             contact.setDarkestSecret(input);
 
 			contacts[nextIndex] = contact;
@@ -42,8 +45,8 @@ class	Phonebook
 		}  
 	}
 
-    void search() const 
-    {
+void PhoneBook::search()
+{
         std::cout << std::setw(10) << std::right << "Index" << '|'
                   << std::setw(10) << std::right << "First Name" << '|'
                   << std::setw(10) << std::right << "Last Name" << '|'
@@ -56,27 +59,23 @@ class	Phonebook
                       << std::setw(10) << std::right << truncate(contacts[i].getLastName(), 10) << '|'
                       << std::setw(10) << std::right << truncate(contacts[i].getNickname(), 10) << std::endl;
         }
-
-        int index;
+        int index = 0;
+        std::string input;
         std::cout << "Enter index to display details: ";
-        std::cin >> index;
-        std::cin.ignore(); 
-
+        std::getline(std::cin, input); 
+        if (std::cin.eof())
+            throw std::runtime_error("Error");
+        if (input.size() == 1 && !std::isdigit(input[0])) 
+        {
+            std::cout << "\033[1;31m" << "Invalid input. need to be a number." << "\033[0m" << std::endl << "\033[1;34m";
+            return;
+        }
+        index = std::stoi(input);
         if (index >= 0 && index < currentSize) 
         {
             contacts[index].display();
+            index = -1;
         } 
-        else 
-        {
+        else
             std::cout << "\033[1;31m" << "Invalid index." << std::endl << "\033[1;34m";
-        }
     }
-    
-	private:
-    static const int maxContacts = 8;
-    Contact contacts[maxContacts];
-    int currentSize;
-    int nextIndex;
-};
-
-#endif
