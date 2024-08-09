@@ -23,7 +23,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other )
         _energyPoints = other._energyPoints;
         _attckDamage = other._attckDamage;
         _name = other._name;
-        std::cout << "Copy assignment have been called." << std::endl;(necesari?)
+        std::cout << "Copy assignment have been called." << std::endl;
     }
     return (*this);
 }
@@ -35,18 +35,39 @@ ClapTrap::~ClapTrap()
 
 void ClapTrap::attack(const std::string& target)
 {
-    if (target._hitPoints > 0 && target._energyPoints)
+    if (_hitPoints > 0 && _energyPoints > 0)
     {
-        if (target._hitPoints )
-        target._hitPoints -= target._attckDamage
-        target._energyPoints -= 1;
+        _energyPoints -= 1;
+        std::cout << "ClapTrap" << _name << " attacks " << target << "causing" << _attckDamage << " points of damage!" << std::endl;
     }
+    else
+        std::cout << "ClapTrap " << _name << " cannot attack, not enough hit points or energy!" << std::endl;
 }
 void ClapTrap::takeDamage(unsigned int amount)
 {
-
+    if (_hitPoints > 0)
+    {
+        if (amount > _hitPoints)
+        {
+            _hitPoints = 0;
+            std::cout << _name << " dies" << std::endl; 
+        }
+        else
+        {
+            _hitPoints -= amount;
+            std::cout << "ClapTrap " << _name << " takes " << amount << " points of damage!" << std::endl;
+        }
+    }
 }
 void ClapTrap::beRepaired(unsigned int amount)
 {
-
+    if (_energyPoints > 0 )
+    {
+        _hitPoints += amount;
+        _energyPoints--;
+        std::cout << _name << " is repaired" << std::endl;
+    }
+    else
+        std::cout << "No enery points to repair " << _name << std::endl;
+    
 }
