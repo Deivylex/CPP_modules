@@ -2,18 +2,18 @@
 
 ClapTrap::ClapTrap() : _name(""), _hitPoints(10), _energyPoints(10), _attackDamage(10) 
 {
-    std::cout << "Default constructor has been called." << std::endl;
+    std::cout << "ClapTrap Default constructor has been called." << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(10) 
 {
-    std::cout << "Contructor with variable name has been called." << std::endl;
+    std::cout << "ClapTrap Contructor with variable name has been called." << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other)
     : _name(other._name), _hitPoints(other._hitPoints), _energyPoints(other._energyPoints), _attackDamage(other._attackDamage) 
 {
-    std::cout << "Copy constructor has been called." << std::endl;
+    std::cout << "ClapTrap Copy constructor has been called." << std::endl;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other )
@@ -24,14 +24,14 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other )
         _energyPoints = other._energyPoints;
         _attackDamage = other._attackDamage;
         _name = other._name;
-        std::cout << "Copy assignment operator has been called." << std::endl;
+        std::cout << "ClapTrap Copy assignment operator has been called." << std::endl;
     }
     return (*this);
 }
 
 ClapTrap::~ClapTrap() 
 {
-    std::cout << "Destructor has been called." << std::endl;
+    std::cout << "ClapTrap Destructor has been called." << std::endl;
 }
 
 void ClapTrap::attack(const std::string& target)
@@ -74,3 +74,4 @@ void ClapTrap::beRepaired(unsigned int amount)
     else
         std::cout << "No energy points to repair " << _name << std::endl;
 }
+

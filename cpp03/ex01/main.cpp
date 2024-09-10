@@ -1,29 +1,29 @@
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main() {
-    // Crear un objeto ClapTrap con un nombre
+    // test ClapTrap
     ClapTrap clap1("CL4P-TP");
 
-    // Atacar a un objetivo
     clap1.attack("Bandit");
-
-    // Recibir daño
     clap1.takeDamage(5);
-
-    // Reparar el ClapTrap
     clap1.beRepaired(3);
-
-    // Intentar atacar de nuevo
     clap1.attack("Skag");
-
-    // Recibir daño suficiente para destruirlo
     clap1.takeDamage(15);
-
-    // Intentar reparar después de ser destruido
     clap1.beRepaired(5);
-
-    // Intentar atacar después de ser destruido
     clap1.attack("Psycho");
+
+    //test ScavTrap
+    ScavTrap scav1("carlos");
+    scav1.attack("papa");
+    scav1.takeDamage(10);
+    scav1.beRepaired(7);
+    scav1.attack("cola");
+    scav1.takeDamage(100);
+    scav1.beRepaired(7);
+    scav1.attack("last");
+    scav1.takeDamage(100);
+    scav1.beRepaired(7);
 
     return 0;
 }
