@@ -1,5 +1,6 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main() 
 {
@@ -24,12 +25,27 @@ int main()
     scav1.attack("last");
     scav1.takeDamage(100);
     scav1.beRepaired(7);
+    scav1.guardGate();
 
     std::cout << "\033[1;32m" << "test scavtrap applying Claptrap attack" << std::endl;
     ScavTrap scav2("noni");
     scav2.ClapTrap::attack("mommi");
     scav2.takeDamage(10);
     scav2.beRepaired(7);
+    scav2.guardGate();
+
+    std::cout << "\033[1;33m" << "test FragTrap" << std::endl;
+    FragTrap fragt1("frafra");
+    fragt1.attack("kuku");
+    fragt1.takeDamage(10);
+    fragt1.beRepaired(7);
+    fragt1.attack("yumi");
+    fragt1.takeDamage(100);
+    fragt1.beRepaired(7);
+    fragt1.attack("last");
+    fragt1.takeDamage(100);
+    fragt1.beRepaired(7);
+    fragt1.highFivesGuys();
 
     return 0;
 }
