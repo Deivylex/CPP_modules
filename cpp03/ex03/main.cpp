@@ -1,6 +1,7 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main() 
 {
@@ -47,5 +48,24 @@ int main()
     fragt1.beRepaired(7);
     fragt1.highFivesGuys();
 
+    std::cout << "\033[1;32m" << "test DiamondTrap" << std::endl;
+    DiamondTrap defaultDiamond;
+    defaultDiamond.whoAmI();
+    defaultDiamond.attack("default");
+    DiamondTrap dtrap("ex03");
+    dtrap.whoAmI();
+    dtrap.attack("jose");
+    dtrap.takeDamage(100);
+    dtrap.beRepaired(5);
+    DiamondTrap diamondOne("DiamondOne");
+    diamondOne.attack("Target_A");
+    diamondOne.whoAmI(); 
+    // Crear una copia usando el constructor de copia
+    DiamondTrap diamondCopy(diamondOne);
+    diamondCopy.whoAmI();
+    // Asignación
+    DiamondTrap diamondTwo("DiamondTwo");
+    diamondTwo = diamondOne;
+    diamondTwo.whoAmI();
     return 0;
 }

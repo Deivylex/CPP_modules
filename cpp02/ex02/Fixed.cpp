@@ -78,7 +78,7 @@ bool Fixed::operator==(const Fixed& other) const { return fixed_p == other.fixed
 
 bool Fixed::operator!=(const Fixed& other) const { return fixed_p != other.fixed_p; }
 
-Fixed Fixed::operator+(const Fixed& other) const { return Fixed(toFloat() + other.toFloat()); }
+Fixed Fixed::operator+(const Fixed& other) const { return Fixed(toFloat() + other.toFloat()); } //porque uso toflo?
 
 Fixed Fixed::operator-(const Fixed& other) const { return Fixed(toFloat() - other.toFloat()); }
 

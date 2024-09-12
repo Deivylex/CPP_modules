@@ -1,5 +1,5 @@
 #include "Fixed.hpp"
-#define float_fractional 256.0f
+#define float_fractional 256.0f //preguntar por este numero 
 
 Fixed::Fixed() : fixed_p(0) 
 {

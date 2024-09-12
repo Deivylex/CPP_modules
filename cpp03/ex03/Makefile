@@ -1,10 +1,10 @@
 # Variables
-NAME            = FragTrap
+NAME            = DiamondTrap
 CC              = c++
 CFLAGS          = -Wall -Werror -Wextra 
 
 # Source and object files
-SRC_FILES       = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
+SRC_FILES       = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 OBJ_FILES       = $(SRC_FILES:.cpp=.o)
 
 # Control codes
