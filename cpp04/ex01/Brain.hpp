@@ -16,6 +16,10 @@ class Brain
     Brain& operator=(const Brain& other);
     ~Brain();
 
+     void setIdeas(int index, const std::string& idea);
+    std::string getIdeas(int index);
+    void    printIdeas() const;
+
 };
 
 #endif

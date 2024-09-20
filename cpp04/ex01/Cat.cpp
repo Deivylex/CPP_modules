@@ -28,3 +28,13 @@ void Cat::makeSound() const
 {
     std::cout << "Cat sound" << std::endl;
 }
+
+std::string Cat::getBrainIdea(int index) const { return brain->getIdeas(index); }
+
+void Cat::setBrainIdea(int index, const std::string& idea) 
+{
+    if (index >= 0 && index < 100)
+        brain->setIdeas(index, idea);
+    else
+        std::cout << "Index out of bounds for brain ideas! " << std::endl; 
+}

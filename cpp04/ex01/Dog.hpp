@@ -4,20 +4,20 @@
 #include "Animal.hpp"
 #include "Brain.hpp"
 
-class Dog : public Animal
+class Dog : public Animal 
 {
-    private :
+    private:
+        Brain* brain;
 
-    Brain* brain;
+    public:
+        Dog();
+        Dog(const Dog& other);
+        Dog& operator=(const Dog& other);
+        ~Dog();
 
-    public : 
-    
-    Dog();
-    Dog(const Dog& other);
-    Dog& operator=(const Dog& other);
-    virtual ~Dog();
-
-    void makeSound() const override; 
+        std::string getBrainIdea(int index) const;
+        void setBrainIdea(int index, const std::string& idea);
+        void makeSound() const override;
 };
 
 #endif

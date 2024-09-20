@@ -38,6 +38,7 @@ for (int i = size / 2; i < size; ++i)
     animals[i] = new Cat();
     animals[i]->makeSound();
 }
+
 delete meta;
 delete j;
 delete i;

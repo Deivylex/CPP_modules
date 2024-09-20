@@ -18,6 +18,8 @@ class Cat : public Animal
     virtual ~Cat();
 
     void makeSound() const override; 
+    std::string getBrainIdea(int index) const;
+    void setBrainIdea(int index, const std::string& idea);
 };
 
 #endif
