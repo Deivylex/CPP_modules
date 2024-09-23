@@ -8,44 +8,74 @@
 
 int main ()
 {
-const Animal* meta = new Animal();
-const Animal* j = new Dog();
-const Animal* i = new Cat();
-const WrongAnimal* w_ani = new WrongAnimal;
-const WrongAnimal* w_cat = new WrongCat;
+    std::cout << "test ex01" << std::endl;
+    const int size = 6;
+    Animal* animals[size];
 
-std::cout << j->getType() << " " << std::endl;
-std::cout << i->getType() << " " << std::endl;
-std::cout << w_cat->getType() << "" << std::endl;
+    for (int i = 0; i < size / 2; ++i)
+    {
+        animals[i] = new Dog();
+        Dog* dog = dynamic_cast<Dog*>(animals[i]);
+        if (dog)
+            dog->setBrainIdea(i, "I love soccer");
+        animals[i]->makeSound();
+    }
+    for (int i = size / 2; i < size; ++i)
+    {
+        animals[i] = new Cat();
+        Cat *cat = dynamic_cast<Cat*>(animals[i]);
+        if (cat)
+            cat->setBrainIdea(i, "cat cat");
+        animals[i]->makeSound();
+    }
+    for (int i = 0; i < size / 2; i++)
+    {
+        Dog *dog = dynamic_cast<Dog*> (animals[i]);
+        if (dog)
+            std::cout << "Dog ideas : " << dog->getBrainIdea(i) << std::endl;
+    }
+    for (int i = size / 2; i < size; i++)
+    {
+        Cat *cat = dynamic_cast<Cat*> (animals[i]);
+        if(cat)
+            std::cout << "cat ideas : " << cat->getBrainIdea(i) << std::endl;
+    }
 
-i->makeSound();
-j->makeSound();
-meta->makeSound();
-w_ani->makeSound();
-w_cat->makeSound();
+    Dog *otherDog = new Dog();
 
-std::cout << "test ex01" << std::endl;
-const int size = 6;
-Animal* animals[size];
+    otherDog->setBrainIdea(0, "idea one");
+    otherDog->setBrainIdea(1, "idea two");
 
-for (int i = 0; i < size / 2; ++i)
-{
-    animals[i] = new Dog();
-    animals[i]->makeSound();
-}
-for (int i = size / 2; i < size; ++i)
-{
-    animals[i] = new Cat();
-    animals[i]->makeSound();
-}
+    Dog copyDog = *otherDog;// cuidado con esto : Dog *copyDog = otherDog copy la direccion del pointer, 
+                            //Dog *copyDog = new Dog() copyDog = otherDog se pierde la referecia del pointer creado "fuga de memoria" y solo se mantiene la referencia del original.
+                            //*otra manera correcta Dog *copyDog = new Dog(*otherDog);
 
-delete meta;
-delete j;
-delete i;
-delete w_ani;
-delete w_cat;
-for (int i = 0; i < size; ++i) 
-    delete animals[i];
+    std::cout << "otherDog idea: " << otherDog->getBrainIdea(0) << std::endl;
+    std::cout << "copyDog idea: " << copyDog.getBrainIdea(0) << std::endl;
 
-return 0;
+    std::cout << "otherDog idea: " << otherDog->getBrainIdea(1) << std::endl;
+    std::cout << "copyDog idea: " << copyDog.getBrainIdea(1) << std::endl;
+
+    copyDog.setBrainIdea(0, "other idea");
+    std::cout << "otherDog idea: " << otherDog->getBrainIdea(0) << std::endl;
+    std::cout << "copyDog idea: " << copyDog.getBrainIdea(0) << std::endl; 
+ 
+    Cat *otherCat = new Cat();
+
+    otherCat->setBrainIdea(0, "idea cat one");
+    otherCat->setBrainIdea(1, "idea cat two");
+
+    Cat copyCat = *otherCat;
+
+    std::cout << "otherCat idea: " << otherCat->getBrainIdea(0) << std::endl;
+    std::cout << "copyCat idea: " << copyCat.getBrainIdea(0) << std::endl;
+
+    std::cout << "otherCat idea: " << otherCat->getBrainIdea(1) << std::endl;
+    std::cout << "copyCat idea: " << copyCat.getBrainIdea(1) << std::endl;
+
+    for (int i = 0; i < size; ++i) 
+        delete animals[i];
+    delete otherDog;
+    delete otherCat;
+    return 0;
 }

@@ -6,7 +6,7 @@ Cat::Cat() : brain(new Brain()) //Dog and Cat will create their Brain using new 
     std::cout << "Cat constractor has been called" << std::endl; 
 }
 
-Cat::Cat(const Cat& other) : Animal(other), brain(new Brain(*other.brain)) {} //Dog and Cat will create their Brain using new Brain()
+Cat::Cat(const Cat& other) : AAnimal(other), brain(new Brain(*other.brain)) {} //Dog and Cat will create their Brain using new Brain()
 
 Cat& Cat::operator=(const Cat& other)
 {

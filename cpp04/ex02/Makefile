@@ -1,10 +1,10 @@
 # Variables
-NAME            = bsp
+NAME            = AAnimal
 CC              = c++
 CFLAGS          = -Wall -Werror -Wextra 
 
 # Source and object files
-SRC_FILES       = main.cpp Fixed.cpp Point.cpp bsp.cpp
+SRC_FILES       = main.cpp AAnimal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
 OBJ_FILES       = $(SRC_FILES:.cpp=.o)
 
 # Control codes

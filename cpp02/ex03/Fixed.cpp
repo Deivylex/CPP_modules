@@ -14,12 +14,12 @@ Fixed::Fixed( const Fixed& other)
 
 Fixed::Fixed( const int num )
 {
-    std::cout << "Int constructor called" << std::endl;
+    std::cout << "Fixed Int constructor called" << std::endl;
     fixed_p = num << fractional_b;
 }
 Fixed::Fixed( const float num )
 {
-    std::cout << "Float constructor calle" << std::endl;
+    std::cout << "Fixed Float constructor called" << std::endl;
     fixed_p = roundf(num * (1 << fractional_b));
 }
 

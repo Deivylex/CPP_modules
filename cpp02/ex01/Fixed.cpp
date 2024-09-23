@@ -19,7 +19,7 @@ Fixed::Fixed( const int num )
 }
 Fixed::Fixed( const float num )
 {
-    std::cout << "Float constructor calle" << std::endl;
+    std::cout << "Float constructor called" << std::endl;
     fixed_p = roundf(num * (1 << fractional_b));
 }
 
