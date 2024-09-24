@@ -8,9 +8,9 @@ class Cure :  public AMateria
     Cure();
     Cure(const Cure& other);
     Cure& operator=(const Cure& other);
-    ~Cure();
+    virtual ~Cure();
 
-    Cure& clone ();
+    AMateria* clone () const;
     void use(ICharacter& type) override;
 };
 
