@@ -26,6 +26,7 @@ int main ()// chequeo de para proteger clases
         more[i] = new Cat();
     for (int i = 0; i < 6; i++)
         more[i]->makeSound();
+        
     delete j;
     delete i;
     delete w_ani;
