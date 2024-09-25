@@ -1,9 +1,10 @@
-#ifndef ICHRRACTER_HPP
-#define ICHRRACTER_HPP
+#ifndef ICHARACTER_HPP
+#define ICHARACTER_HPP
 
 #include "AMateria.hpp"
+#include <iostream>
 
-class ICharacter : public AMateria
+class ICharacter
 {
 
     public:
