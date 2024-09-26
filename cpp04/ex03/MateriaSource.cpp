@@ -43,13 +43,9 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& other)
 
 MateriaSource::~MateriaSource() 
 {
-    for(int i = 0; i < 4; i++)
+    for (int i = 0; i < 4; ++i)
     {
-        if (_temple[i])
-        {
-            delete _temple[i];
-            _temple[i] = nullptr;
-        }
+        delete _temple[i];
     }
     std::cout << "MateriaSource destructor called" << std::endl; 
 }
@@ -58,7 +54,7 @@ void MateriaSource::learnMateria(AMateria* m)
 {
     if (!m)
         return ;
-    for( int i= 0; i < 4; i++)
+    for( int i = 0; i < 4; i++)
     {
         if (!_temple[i])
         {
@@ -74,7 +70,7 @@ AMateria* MateriaSource::createMateria(std::string const & type)
 {
     for (int i = 0; i < 4; i++)
     {
-        if (type == _temple[i]->getType() && _temple[i])
+        if (_temple[i] && type == _temple[i]->getType())
         {
             std::cout << "Creating this new Materia " << type << std::endl;
             return _temple[i]->clone();

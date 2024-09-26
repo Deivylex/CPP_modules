@@ -1,6 +1,6 @@
 #include "Cure.hpp"
 
-Cure::Cure() : AMateria("Cure") {  std::cout << "Cure constructor called" << std::endl; }
+Cure::Cure() : AMateria("cure") {  std::cout << "Cure constructor called" << std::endl; }
 
 Cure::Cure(const Cure& other) : AMateria(other)
 {
@@ -22,5 +22,5 @@ AMateria* Cure::clone() const { return new Cure(*this); }
 
 void Cure::use(ICharacter& target) 
 {
-    std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+    std::cout << " \033[1;91m" << "* heals " << target.getName() << "'s wounds *" << "\033[0m" << std::endl;
 }
