@@ -17,7 +17,7 @@ class Bureaucrat
             virtual const char* what() const throw();
     };
 
-    Bureaucrat(std::string name);
+    Bureaucrat(std::string name, int grade);
     ~Bureaucrat();
     Bureaucrat& operator=(const Bureaucrat &other);
     Bureaucrat(const Bureaucrat &other);
