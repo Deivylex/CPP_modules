@@ -1,5 +1,5 @@
 # Variables
-NAME            = Brain
+NAME            = Bureaucrat
 CC              = c++
 CFLAGS          = -Wall -Werror -Wextra 
 
