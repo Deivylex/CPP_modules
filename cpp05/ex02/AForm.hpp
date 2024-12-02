@@ -2,49 +2,49 @@
 #define AFORM_HPP
 
 #include <iostream>
-#include "Bureaucrat.hpp"
+#include <string>
 
 class Bureaucrat;
 
-class AForm 
-{
-    private :
-    
+class AForm {
+private:
     const std::string _name;
-    bool isSign;
+    bool _isSigned;
     const int _gradeToSign;
-    const int _gradeToExec;
+    const int _gradeToExecute;
 
-    public :
-
-    class GradeTooHighException : public std::exception 
-    {
-        public :
-            virtual const char* what() const throw();
-    };
-    class GradeTooLowException : public std::exception 
-    {
-        public :
-            virtual const char* what() const throw();
+public:
+    class GradeTooHighException : public std::exception {
+    public:
+        virtual const char* what() const throw();
     };
 
-    friend std::ostream& operator<<(std::ostream &out, const Form &form);
+    class GradeTooLowException : public std::exception {
+    public:
+        virtual const char* what() const throw();
+    };
 
-    AForm(const std::string name, const int gradeToSign, const int gradeToExec);
-    ~AForm();
-    AForm& operator=(const Form& other) = delete;
-    AForm(Form& other);
+    class FormNotSignedException : public std::exception {
+    public:
+        virtual const char* what() const throw();
+    };
 
-    //getters
-    std::string getNameForm();
-    int getGradeToSign();
-    int getGradeToExec();
-    bool getIsSing();
+    AForm(const std::string& name, int gradeToSign, int gradeToExecute);
+    AForm(const AForm& other);
+    virtual ~AForm();
+    AForm& operator=(const AForm& other) = delete;
 
-    void beSigned(const Bureaucrat& bcrat);
-    void execute(Bureaucrat const & executor) const;
+    std::string getNameForm() const;
+    int getGradeToSign() const;
+    int getGradeToExecute() const;
+    bool isSigned() const;
+
+    void beSigned(const Bureaucrat& bureaucrat);
+    void execute(const Bureaucrat& executor) const;
+
     virtual void executeAction() const = 0;
 
+    friend std::ostream& operator<<(std::ostream& out, const AForm& form);
 };
 
 #endif

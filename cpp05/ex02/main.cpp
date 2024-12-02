@@ -1,35 +1,44 @@
 #include "Bureaucrat.hpp"
-#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main() {
     try {
-        Bureaucrat john("John", 50);
-        Form taxForm("TaxForm", 40, 30);
+        Bureaucrat john("John", 5);
+        Bureaucrat alice("Alice", 145);
 
-        std::cout << taxForm << std::endl;
-        john.signForm(taxForm);
-        std::cout << taxForm << std::endl;
+        ShrubberyCreationForm shrubbery("garden");
+        RobotomyRequestForm robotomy("Bender");
+        PresidentialPardonForm pardon("Zaphod");
 
-        Bureaucrat mary("Mary", 30);
-        mary.signForm(taxForm);
-        std::cout << taxForm << std::endl;
+        std::cout << john << std::endl;
+        std::cout << alice << std::endl;
 
-        Form taxForm2("TaxForm", 40, 30);
-        Bureaucrat jose("jose", 40);
-        jose.signForm(taxForm2);
-        std::cout << taxForm2 << std::endl;
+        std::cout << shrubbery << std::endl;
+        std::cout << robotomy << std::endl;
+        std::cout << pardon << std::endl;
 
-        Form taxForm3("TaxForm", 40, 30);
-        Bureaucrat okok("okok", 20);
-        okok.signForm(taxForm3);
-        std::cout << taxForm3 << std::endl;
+        // Alice intenta firmar el formulario de Shrubbery
+        alice.signForm(shrubbery);
+        // Alice intenta ejecutar el formulario de Shrubbery (debería fallar)
+        try {
+            alice.executeForm(shrubbery);
+        } catch (std::exception& e) {
+            std::cerr << "Error: " << e.what() << std::endl;
+        }
 
-        Bureaucrat lolo("lolo", 0);
-        lolo.signForm(taxForm);
-        std::cout << taxForm << std::endl;
-    }
-    catch (std::exception& e) {
-        std::cout << e.what() << std::endl;
+        // John firma y ejecuta los formularios
+        john.signForm(shrubbery);
+        john.executeForm(shrubbery);
+
+        john.signForm(robotomy);
+        john.executeForm(robotomy);
+
+        john.signForm(pardon);
+        john.executeForm(pardon);
+    } catch (std::exception& e) {
+        std::cerr << "Exception caught: " << e.what() << std::endl;
     }
 
     return 0;
