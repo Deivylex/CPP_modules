@@ -37,5 +37,6 @@ AForm* Intern::makeForm(std::string formName, std::string target)
         default:
             std::cerr << "Error: Form \"" << formName << "\" does not exist!" << std::endl;
             throw std::invalid_argument("Invalid form name");
+            return nullptr;
     }
 }

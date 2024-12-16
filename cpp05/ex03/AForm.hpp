@@ -42,7 +42,7 @@ public:
     void beSigned(const Bureaucrat& bureaucrat);
     void execute(const Bureaucrat& executor) const; //tengo que arreglas esto 
 
-    virtual void execute() const = 0;
+    virtual void executeAction() const = 0;
 
     friend std::ostream& operator<<(std::ostream& out, const AForm& form);
 };

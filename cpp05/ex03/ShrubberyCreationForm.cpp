@@ -6,7 +6,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {};
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other) : ShrubberyCreationForm(other.target) {}
 
-void ShrubberyCreationForm::execute() const 
+void ShrubberyCreationForm::executeAction() const 
 {
     
     std::ofstream file(target + "_shrubbery");

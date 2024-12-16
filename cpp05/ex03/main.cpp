@@ -7,62 +7,60 @@
 
 int main() 
 {
-    try {
-        Intern intern;
-        Bureaucrat boss("Alice", 1);
-        Bureaucrat junior("Bob", 150);
+    
+    Intern intern;
+    Bureaucrat boss("Alice", 1);
+    Bureaucrat junior("Bob", 150);
 
-        std::cout << "=== Test 1: Create and sign RobotomyRequestForm ===" << std::endl;
-        AForm* robotomy = intern.makeForm("robotomy request", "R2D2");
-        std::cout << *robotomy << std::endl;
+    std::cout << "\n=== Test 1: Create and sign RobotomyRequestForm ===\n" << std::endl;
+    AForm* robotomy = intern.makeForm("robotomy request", "R2D2");
+    std::cout << *robotomy << std::endl;
 
-        try {
-            boss.executeForm(*robotomy);
-        } catch (std::exception& e) {
-            std::cerr << "Execution error: " << e.what() << std::endl;
-        }
+    boss.executeForm(*robotomy);
 
-        robotomy->beSigned(boss);
-        boss.executeForm(*robotomy);
+    std::cout << "\n";
+    boss.signForm(*robotomy);
+    std::cout << *robotomy << std::endl;
+    boss.executeForm(*robotomy);
+    std::cout << "\n----------\n";
+    delete robotomy;
+    try
+    {
+    std::cout << "\n=== Test 2: Create an invalid form ===" << std::endl;
+    AForm* invalid = intern.makeForm("invalid form", "nowhere");
+    if (invalid == nullptr)
+        return (1);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 
-        delete robotomy;
-
-        std::cout << "=== Test 2: Create an invalid form ===" << std::endl;
-        try {
-            AForm* invalid = intern.makeForm("invalid form", "nowhere");
-            delete invalid;
-        } catch (std::exception& e) {
-            std::cerr << "Error: " << e.what() << std::endl;
-        }
-
-        std::cout << "=== Test 3: Create and handle ShrubberyCreationForm ===" << std::endl;
+    std::cout << "\n=== Test 3: Create and handle ShrubberyCreationForm ===\n" << std::endl;
         AForm* shrubbery = intern.makeForm("shrubbery creation", "garden");
         std::cout << *shrubbery << std::endl;
 
-        try {
-            shrubbery->beSigned(junior);
-        } catch (std::exception& e) {
-            std::cerr << "Signing error: " << e.what() << std::endl;
-        }
-
-        shrubbery->beSigned(boss);
-        boss.executeForm(*shrubbery);
-
-        delete shrubbery;
-
-        std::cout << "=== Test 4: Create and handle PresidentialPardonForm ===" << std::endl;
-        AForm* pardon = intern.makeForm("presidential pardon", "Zaphod Beeblebrox");
-        std::cout << *pardon << std::endl;
-
-        pardon->beSigned(boss);
-        boss.executeForm(*pardon);
-
-        delete pardon;
-
+    try {
+        junior.signForm(*shrubbery);
     } catch (std::exception& e) {
-        std::cerr << "Exception caught: " << e.what() << std::endl;
+        std::cerr << "Signing error: " << e.what() << std::endl;
+        delete shrubbery;
     }
 
-    std::cout << "=== End of tests ===" << std::endl;
+    boss.signForm(*shrubbery);
+    boss.executeForm(*shrubbery);
+    delete shrubbery;
+    std::cout << "\n-------------------\n";
+
+    std::cout << "\n=== Test 4: Create and handle PresidentialPardonForm ===\n" << std::endl;
+    AForm* pardon = intern.makeForm("presidential pardon", "Zaphod Beeblebrox");
+    std::cout << *pardon << std::endl;
+
+    boss.signForm(*pardon);
+    boss.executeForm(*pardon);
+
+    delete pardon;
+
+    std::cout << "\n=== End of tests ===" << std::endl;
     return 0;
 }
