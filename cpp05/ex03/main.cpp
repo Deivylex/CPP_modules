@@ -26,10 +26,10 @@ int main()
     delete robotomy;
     try
     {
-    std::cout << "\n=== Test 2: Create an invalid form ===" << std::endl;
-    AForm* invalid = intern.makeForm("invalid form", "nowhere");
-    if (invalid == nullptr)
-        return (1);
+        std::cout << "\n=== Test 2: Create an invalid form ===" << std::endl;
+        AForm* invalid = intern.makeForm("invalid form", "nowhere");
+        if (invalid == nullptr)
+            return (1);
     }
     catch(const std::exception& e)
     {
