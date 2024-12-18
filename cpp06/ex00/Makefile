@@ -1,10 +1,10 @@
 # Variables
-NAME            = Bureaucrat
+NAME            = ScalarConverter
 CC              = c++
 CFLAGS          = -Wall -Werror -Wextra 
 
 # Source and object files
-SRC_FILES       = main.cpp Bureaucrat.cpp
+SRC_FILES       = main.cpp ScalarConverter.cpp
 OBJ_FILES       = $(SRC_FILES:.cpp=.o)
 
 # Control codes
