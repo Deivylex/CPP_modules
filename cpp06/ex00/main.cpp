@@ -9,14 +9,8 @@ int  main (int ac, char** av)
     }
     else if (ac == 2)
     {
-        try 
-        {
+
             ScalarConverter::convert(av[1]);
-        }
-        catch (std::exception& e)
-        {
-            std::cerr << e.what() << std::endl; 
-        }
     }
     return 0;
 }
