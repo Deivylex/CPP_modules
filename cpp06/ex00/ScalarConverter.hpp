@@ -6,9 +6,7 @@
 
 enum class type {
     CHAR,
-    INT,
-    DOUBLE,
-    FLOAT,
+    NUMBER,
     PSEUDOLITERAL,
     ERROR
 };

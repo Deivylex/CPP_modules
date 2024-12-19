@@ -1,7 +1,7 @@
 # Variables
 NAME            = ScalarConverter
 CC              = c++
-CFLAGS          = -Wall -Werror -Wextra 
+CFLAGS          = 
 
 # Source and object files
 SRC_FILES       = main.cpp ScalarConverter.cpp
