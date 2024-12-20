@@ -11,13 +11,6 @@ enum class type {
     ERROR
 };
 
-void printChar(std::string arg);
-void printInt(std::string arg);
-void printFloat(std::string arg);
-void printDouble(std::string arg);
-type checkType(std::string arg);
-
-
 class ScalarConverter
 {
     private :

@@ -1,10 +1,10 @@
 # Variables
-NAME            = ScalarConverter
+NAME            = Base
 CC              = c++
 CFLAGS          = -Wall -Werror -Wextra
 
 # Source and object files
-SRC_FILES       = main.cpp ScalarConverter.cpp
+SRC_FILES       = main.cpp Base.cpp
 OBJ_FILES       = $(SRC_FILES:.cpp=.o)
 
 # Control codes
