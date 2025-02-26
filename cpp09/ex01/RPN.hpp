@@ -6,7 +6,7 @@
 #include <sstream>
 
 
-enum token
+enum tokens
 {
     SUM,
     REST,
@@ -18,7 +18,8 @@ class RPN
 {
     private:
     
-    std::stack <int> cont;
+    std::stack <int> content;
+    int ret;
 
     public:
 
@@ -29,4 +30,5 @@ class RPN
 
     void handelInput(std::string input);
     void runRPN(std::string str);
+    void RPMcalculetor(tokens OP);
 };
