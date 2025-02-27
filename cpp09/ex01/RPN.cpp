@@ -13,94 +13,106 @@ RPN& RPN::operator=(const RPN& other)
     return *this;
 }
 
-void RPN::RPMcalculetor(tokens OP)
+void RPN::RPMcalculator(tokens OP)
 {
-    if (content.empty())
-        return ;
-    int result;
+    if (content.size() != 2)
+        throw std::runtime_error("Error\n");
+    float       a;
+    float       b;
+    float       result;
     switch (OP)
     {
         case SUM:
-            result = content.top();
+            b = content.top();
             content.pop();
-            while (!content.empty())
-            {             
-                result += content.top();
-                content.pop();
-            }            
+            a = content.top();
+            result = a + b;
+            content.pop();     
             break;
         case REST:
-            result = content.top();
+            b = content.top();
             content.pop();
-            while (!content.empty())
-            {
-                if (result < content.top())
-                    result = content.top() - result;
-                else
-                    result -= content.top();
-                content.pop();
-            } 
+            a = content.top();
+            result = a - b;
+            content.pop(); 
             break;
         case MULT:
-            result = content.top();
+            b = content.top();
             content.pop();
-            while (!content.empty())
-            {
-                result *= content.top();
-                content.pop();
-            } 
+            a = content.top();
+            result = a * b;
+            content.pop();
             break;
-        case DIV://need to check this which value can not be 0
-            result = content.top();
-            if (result == 0)
-                throw std::runtime_error("Error: division by 0 is not possible");
+        case DIV:
+            b = content.top();
+            if (b == 0)
+                throw std::runtime_error("Error: not possible division by 0");
             content.pop();
-            while (!content.empty())
-            {
-                result = content.top() / result;
-                content.pop();
-            } 
+            a = content.top();
+            result = a / b;
+            content.pop(); 
             break;
     }
     content.push(result);
 }
 
-void RPN::runRPN(std::string str)
+char findOp(std::string str)
 {
-    //std::cout << str << "\n";
     std::istringstream  split(str);
     std::string         token;
 
     while (split >> token)
     {
-        //std::cout << "int " << token << "\n";
+        if (token == "+" || token == "-" || token == "*" || token == "/")
+            return token[0];
+    }
+    return (' ');
+}
+
+void RPN::runRPN(std::string str)
+{
+    if (str.size() == 1)
+        throw std::runtime_error("Error");
+    std::istringstream  split(str);
+    std::string         token;
+
+    char op = findOp(str);
+    while (split >> token)
+    {
         if (token.size() > 1)
             throw std::runtime_error("Error");
-        if (token == "+" || token == "-" || token == "*" || token == "/" || std::isdigit(token[0]))
+    
+        if (std::isdigit(token[0]))
         {
-            switch (token[0])
+            content.push(std::stoi(token));
+            if(content.size() == 2)
             {
-                case '+':
-                    RPMcalculetor(SUM);
-                    break;
-                case '-':
-                    RPMcalculetor(REST);
-                    break;
-                case '*':
-                    RPMcalculetor(MULT);
-                    break;
-                case '/':
-                    RPMcalculetor(DIV);
-                    break;
-                default:
-                    content.push(std::stoi(token));
-                    break;
+                switch (op)
+                {
+                    case '+':
+                        RPMcalculator(SUM);
+                        break;
+                    case '-':
+                        RPMcalculator(REST);
+                        break;
+                    case '*':
+                        RPMcalculator(MULT);
+                        break;
+                    case '/':
+                        RPMcalculator(DIV);
+                        break;
+                    default :
+                        break;
+                }
             }
         }
+        else if(token[0]  == op)
+            break;
         else
             throw std::runtime_error("Error");
     }
-    
+    if (content.size() == 0)
+        throw std::runtime_error("Error");
 }
 
 void RPN::handelInput(std::string input)
@@ -108,10 +120,12 @@ void RPN::handelInput(std::string input)
     int sepPos = 0;
     while (sepPos < input.size())
     {
-        //std::cout << sepPos << "   " << input.find_first_of("+-*/", sepPos) <<"\n";
-        std::string str = input.substr(sepPos, input.find_first_of("+-*/", sepPos) - sepPos + 1);
+        int op = input.find_first_of("+-*/", sepPos);
+        if (op == std::string::npos)
+            throw std::runtime_error("Error"); ;
+        std::string str = input.substr(sepPos, op - sepPos + 1);
         runRPN(str);
-        sepPos = input.find_first_of("+-*/", sepPos) + 1;
+        sepPos = op + 1;
     }
     std::cout << content.top() << "\n";
     

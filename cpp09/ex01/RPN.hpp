@@ -4,6 +4,8 @@
 #include <iostream>
 #include <algorithm>
 #include <sstream>
+#include <regex>
+#include <cctype>
 
 
 enum tokens
@@ -18,8 +20,7 @@ class RPN
 {
     private:
     
-    std::stack <int> content;
-    int ret;
+    std::stack <float> content;
 
     public:
 
@@ -30,5 +31,5 @@ class RPN
 
     void handelInput(std::string input);
     void runRPN(std::string str);
-    void RPMcalculetor(tokens OP);
+    void RPMcalculator(tokens OP);
 };
