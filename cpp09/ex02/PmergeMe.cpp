@@ -1,6 +1,4 @@
 #include "PmergeMe.hpp"
-#include <iostream>
-#include <vector>
 
 PmergeMe::PmergeMe() {
     // Constructor implementation
@@ -13,6 +11,21 @@ PmergeMe::~PmergeMe() {
 PmergeMe::PmergeMe(const PmergeMe& other)
 {
     
+}
+
+void PmergeMe::checkArg(int ac, char** av) 
+{
+    std::unordered_set<unsigned int> uniqueElements;
+
+    for (int i  = 1; i < ac; i++)//check for duplicates
+    {
+        int element = std::stoi(av[i]);
+        if (uniqueElements.find(element) != uniqueElements.end())
+        {
+            throw std::invalid_argument("Error: Duplicate element found");
+        }
+        uniqueElements.insert(element);
+    }
 }
 
 PmergeMe& PmergeMe::operator=(const PmergeMe& other)
